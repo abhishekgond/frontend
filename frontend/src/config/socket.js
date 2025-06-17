@@ -1,12 +1,12 @@
 // config/socket.js
 import { io } from "socket.io-client";
 
-// Replace with your backend URL and port
-const REACT_APP_BACKEND_URL = "http://localhost:3000";
+// Use VITE_ prefixed env variable
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5173";
 
 export const initSocket = async () => {
-  const socket = io(REACT_APP_BACKEND_URL, {
-    transports: ["websocket"], // optional: for stability
+  const socket = io(BACKEND_URL, {
+    transports: ["websocket"],
     reconnectionAttempts: 3,
     timeout: 10000,
   });
